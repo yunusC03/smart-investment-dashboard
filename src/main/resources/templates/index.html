@@ -6,18 +6,30 @@
 <body>
 <h1>Investments</h1>
 
-<table border="1">
+<table border="1" cellpadding="6">
     <tr>
         <th>Asset</th>
         <th>Amount Invested</th>
         <th>Current Value</th>
+        <th>Profit</th>
+        <th>Performance</th>
     </tr>
     <tr th:each="inv : ${investments}">
         <td th:text="${inv.assetName}"></td>
         <td th:text="${inv.amountInvested}"></td>
         <td th:text="${inv.currentValue}"></td>
+
+        <!-- Profit farbig: grün, wenn >= 0 | rot, wenn < 0 -->
+        <td th:text="${inv.profit}"
+            th:style="${inv.profit} >= 0 ? 'color: green;' : 'color: red;'">
+        </td>
+
+        <td th:text="${inv.profitPercent + ' %'}"
+            th:style="${inv.profitPercent} >= 0 ? 'color: green;' : 'color: red;'">
+        </td>
     </tr>
 </table>
+
 
 <h2>Add Investment</h2>
 <form action="/add" method="post">
