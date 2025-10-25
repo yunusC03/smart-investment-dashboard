@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Smart Investment Dashboard</title>
+</head>
+<body>
+<h1>Investments</h1>
+
+<table border="1">
+    <tr>
+        <th>Asset</th>
+        <th>Amount Invested</th>
+        <th>Current Value</th>
+    </tr>
+    <tr th:each="inv : ${investments}">
+        <td th:text="${inv.assetName}"></td>
+        <td th:text="${inv.amountInvested}"></td>
+        <td th:text="${inv.currentValue}"></td>
+    </tr>
+</table>
+
+<h2>Add Investment</h2>
+<form action="/add" method="post">
+    <input type="text" name="assetName" placeholder="Asset Name" required/>
+    <input type="number" name="amountInvested" placeholder="Amount" step="0.01" required/>
+    <input type="number" name="currentValue" placeholder="Current Value" step="0.01" required/>
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
